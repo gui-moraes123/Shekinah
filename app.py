@@ -37,7 +37,7 @@ header .brand small{display:block;font-weight:400;margin-top:4px;color:#e6d9c5;f
 @media(max-width:1080px){.monstrance{opacity:.45;left:-65px;transform:scale(.75)}.hero-inner{z-index:3}}
 @media(max-width:740px){header{display:block;padding:12px 14px}.brand{justify-content:center}.topnav{justify-content:center;flex-wrap:wrap;gap:9px 16px;margin-top:12px}.topnav a{font-size:11px}.hero{min-height:575px;padding:50px 15px}.monstrance{opacity:.25;left:-85px;top:18%;transform:scale(.65)}.hero h1{letter-spacing:-2px;font-size:clamp(45px,11vw,75px)}.hero-facts{margin:16px auto}.hero-facts div{padding:6px 10px}.packing{font-size:10px}.hero .btn{font-size:14px}.hero .whatsapp{font-size:11px}}
 
-.hero{background-image:linear-gradient(90deg,#160c08cc 0%,#180e0bb5 40%,#170b07a3 70%,#130a08b8 100%),linear-gradient(0deg,#170c08d9,transparent 55%),url('/static/hero-shekinah.jpg'),url('https://images.unsplash.com/photo-1519491050282-cf00c82424b4?auto=format&fit=crop&w=1800&q=85');background-position:center;background-size:cover;background-repeat:no-repeat}
+.hero{background-image:linear-gradient(90deg,rgba(15,8,4,.45),rgba(15,8,4,.16),rgba(15,8,4,.4)),url('/static/hero-shekinah.jpg?v=20261113b');background-position:center;background-size:cover;background-repeat:no-repeat}
 .hero:before{display:none}.monstrance{display:none}
 .hero h1{font-family:Georgia,serif;font-size:clamp(53px,9vw,118px);font-weight:900;font-style:italic;letter-spacing:-2px;color:#ffe0a0;text-shadow:0 4px 10px #100600,0 0 24px #b67b26;transform:skew(-7deg)}
 .about-retreat{max-width:1080px;margin:42px auto;padding:clamp(25px,5vw,58px);text-align:center;background:#fff9ed;border:1px solid #ead8b6;box-shadow:0 12px 32px #4c301116;border-radius:12px;color:#4a3323}
