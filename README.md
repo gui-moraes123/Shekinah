@@ -1,0 +1,2 @@
+# SHEKINAH 2027
+Site de inscrições do III Retiro de Jovens. No Railway, configure `SECRET_KEY`, `ADMIN_USERNAME`, `ADMIN_PASSWORD` e `DATABASE_PATH=/data/shekinah.db`. Adicione volume persistente em `/data`. Acesse `/admin/login` para coordenar. PIX informado é chave para copiar, não QR bancário validado. Antes de receber dados de menores, configure política de privacidade e consentimento apropriado.
