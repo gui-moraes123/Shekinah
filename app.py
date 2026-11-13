@@ -84,7 +84,20 @@ header .brand small{display:block;font-weight:400;margin-top:4px;color:#e6d9c5;f
 .hero-info strong{font-size:10px}
 }
 @media(max-width:390px){.hero-title-wrap{left:14%;right:14%;top:5%}.hero-info>div{flex:1 1 30%}.hero-info>div:nth-child(2){border-right:1px solid #b38b4c}.hero-info>div:last-child{flex:1 1 30%}}
-.hero-static{background:#1b0d07;line-height:0;width:100%;overflow:hidden}.hero-static img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}@media(max-width:740px){.hero-static img{width:100%;height:auto;object-fit:contain}}</style><link rel="stylesheet" href="/static/capa.css?v=20261113c"><header class="site-header"><a class="nav-marca" href="/"><img src="/static/logo-igreja-oficial.svg?v=2" alt="Logo da Paróquia Nossa Senhora Aparecida com desenho da igreja e nome completo" class="parish-logo" width="135" height="112"><span class="parish-location"><small>Jardim Imperial</small></span></a><nav class="nav-links"><a href="/#inicio">Início</a><a href="/#sobre">Sobre o Retiro</a><a href="/#inscricao">Inscrições</a><span class="sep"></span><a href="/admin/login">♙ Área do Coordenador</a></nav></header>{% with msgs=get_flashed_messages() %}{% for m in msgs %}<main class="msg">{{m}}</main>{% endfor %}{% endwith %}{% block body %}{% endblock %}<footer>III Retiro de Jovens • SHEKINAH 2027<div style="margin-top:9px;font-size:12px;opacity:.85">Desenvolvido por <strong>Power Data Systems</strong></div></footer></html>'''
+.hero-static{background:#1b0d07;line-height:0;width:100%;overflow:hidden}.hero-static img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}@media(max-width:740px){.hero-static img{width:100%;height:auto;object-fit:contain}}</style><link rel="stylesheet" href="/static/capa.css?v=20261113c"><style>
+header.site-header{min-height:64px!important;height:64px!important;max-height:64px!important;padding-top:5px!important;padding-bottom:5px!important;overflow:visible}
+header.site-header .nav-marca{flex:0 0 auto;min-width:0}
+header.site-header .nav-marca .parish-logo{display:block!important;width:120px!important;height:52px!important;max-width:120px!important;max-height:52px!important;object-fit:contain!important;object-position:center!important}
+header.site-header .nav-links{min-width:0;gap:clamp(12px,2vw,28px)}
+header.site-header .nav-links a{font-size:clamp(12px,1.05vw,16px)}
+@media(max-width:740px){
+header.site-header{height:auto!important;max-height:none!important;min-height:0!important;padding:9px 12px!important;gap:8px!important;flex-direction:column!important;align-items:center!important}
+header.site-header .nav-marca .parish-logo{width:118px!important;max-width:118px!important;height:62px!important;max-height:62px!important}
+header.site-header .nav-links{width:100%;justify-content:center;flex-wrap:wrap;column-gap:16px;row-gap:0}
+header.site-header .nav-links a{font-size:clamp(10px,2.6vw,13px)!important;padding:7px 0}
+header.site-header .nav-links .sep{display:none}
+}
+</style><header class="site-header"><a class="nav-marca" href="/"><img src="/static/logo-igreja-oficial.svg?v=3" alt="Paróquia Nossa Senhora Aparecida" class="parish-logo" width="120" height="88"></a><nav class="nav-links"><a href="/#inicio">Início</a><a href="/#sobre">Sobre o Retiro</a><a href="/#inscricao">Inscrições</a><span class="sep"></span><a href="/admin/login">♙ Área do Coordenador</a></nav></header>{% with msgs=get_flashed_messages() %}{% for m in msgs %}<main class="msg">{{m}}</main>{% endfor %}{% endwith %}{% block body %}{% endblock %}<footer>III Retiro de Jovens • SHEKINAH 2027<div style="margin-top:9px;font-size:12px;opacity:.85">Desenvolvido por <strong>Power Data Systems</strong></div></footer></html>'''
 def page(body,**kw):return render_template_string(BASE.replace("{% block body %}{% endblock %}",body),**kw)
 @app.get("/")
 def home():
