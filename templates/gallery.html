@@ -1,0 +1,22 @@
+<section class="gallery section-space" id="galeria" aria-labelledby="gallery-title">
+  <div class="section-heading">
+    <div><span class="eyebrow">NOSSA HISTÓRIA TEM ROSTOS</span><h2 id="gallery-title">Quem viveu, sabe.<br><em>Quem vem, vai sentir.</em></h2><p>Alguns registros das nossas primeiras edições. O próximo encontro pode ter você.</p></div>
+    <div class="gallery-filters" role="group" aria-label="Escolha a edição" hidden><button type="button" data-edition="2" aria-pressed="true">2ª edição <span>2026</span></button><button type="button" data-edition="1" aria-pressed="false">1ª edição <span>2025</span></button></div>
+  </div>
+  <p class="gallery-count" aria-live="polite" hidden></p>
+  <div class="gallery-grid">
+    {% for photo in gallery %}
+    <a class="gallery-photo" href="{{photo.src}}" target="_blank" rel="noopener" data-gallery-edition="{{photo.edition}}" data-source="{{photo.source}}" data-caption="{{photo.alt}}" aria-label="Ampliar: {{photo.alt}}">
+      <img src="{{photo.src}}" alt="{{photo.alt}}" width="640" height="480" loading="lazy" decoding="async">
+      <span class="gallery-photo-label"><span>{{photo.edition}}ª edição · {{'2026' if photo.edition==2 else '2025'}}</span><span class="gallery-expand" aria-hidden="true">{{icon('arrow','diagonal')}}</span></span>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="gallery-credit"><span>Registros da nossa comunidade · <a href="https://www.instagram.com/paroq.nsaparecida/" target="_blank" rel="noopener">@paroq.nsaparecida</a></span><span>Toque em uma foto para reviver esse momento.</span></div>
+  <dialog id="photo-viewer" aria-labelledby="photo-viewer-title">
+    <div class="viewer-top"><h3 id="photo-viewer-title">Memórias do SHEKINAH</h3><button type="button" class="viewer-close" aria-label="Fechar foto">Fechar <span aria-hidden="true">×</span></button></div>
+    <div class="viewer-stage"><button type="button" class="viewer-prev" aria-label="Foto anterior">←</button><img id="viewer-image" alt=""><button type="button" class="viewer-next" aria-label="Próxima foto">→</button></div>
+    <div class="viewer-bottom"><span id="viewer-counter" aria-live="polite"></span><a id="viewer-source" href="https://www.instagram.com/paroq.nsaparecida/" target="_blank" rel="noopener">Ver publicação no Instagram {{icon('arrow','diagonal')}}</a></div>
+    <p class="viewer-hint">Use as setas ou deslize a foto. Pressione Esc para fechar.</p>
+  </dialog>
+</section>
