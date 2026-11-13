@@ -64,6 +64,26 @@ header .brand small{display:block;font-weight:400;margin-top:4px;color:#e6d9c5;f
 .hero-info strong{font-size:15px;color:#ffdb8c}
 @media(max-width:740px){.hero-image-section{min-height:0;display:block;padding:0;background:#170d08}.hero-image-section .hero-art{position:relative;inset:auto;display:block;width:100%;height:auto;object-fit:contain;z-index:auto}.hero-image-section:before{display:none}.hero-overlay{background:linear-gradient(#24140c,#1a100b);padding:18px 14px 25px}.hero-crown{font-size:23px}.hero-overlay h1{font-size:clamp(46px,12vw,78px);letter-spacing:-2px}.hero-motto{font-size:clamp(17px,4.7vw,23px);margin:4px 0 16px}.hero-retreat{min-width:0;width:100%;font-size:clamp(15px,4.5vw,22px);padding:7px 8px}.hero-parish{font-size:11px;line-height:1.6;margin:14px 0}.hero-info{gap:8px;flex-wrap:wrap}.hero-info>div{flex:1 1 28%;padding:2px 5px;gap:4px}.hero-info span{font-size:17px}.hero-info p{font-size:9px}.hero-info strong{font-size:11px}.hero-cta{padding:14px 12px}}
 @media(max-width:390px){.hero-info>div{flex:1 1 45%}.hero-info>div:nth-child(2){border:0}.hero-info>div:last-child{flex:1 1 100%}}
+/* Mobile: texto integrado à fotografia, sem bloco de título separado */
+@media(max-width:740px){
+.hero-image-section{position:relative;display:block;background:#1a100b;overflow:hidden}
+.hero-image-section .hero-art{position:relative;display:block;width:100%;height:auto;object-fit:contain}
+.hero-image-section:after{content:"";position:absolute;left:0;right:0;top:0;height:auto;aspect-ratio:1536/864;background:linear-gradient(90deg,rgba(8,4,2,.08),rgba(8,4,2,.52) 35%,rgba(8,4,2,.52) 65%,rgba(8,4,2,.08));pointer-events:none}
+.hero-overlay{display:contents}
+.hero-title-wrap{position:absolute;z-index:2;left:17%;right:17%;top:7%;max-width:none;margin:0;text-align:center}
+.hero-crown{font-size:17px;line-height:1}
+.hero-overlay h1{font-family:Georgia,serif;font-weight:800;font-style:italic;transform:none;font-size:clamp(29px,8.2vw,54px);letter-spacing:-1.5px;line-height:1.08;margin:2px 0;color:#f7cf81;background:none;-webkit-text-fill-color:#f7cf81;filter:drop-shadow(0 2px 4px #000)}
+.hero-motto{font-size:clamp(10px,2.9vw,17px);line-height:1.25;margin:5px 0 8px;text-shadow:0 2px 4px #000}
+.hero-retreat{min-width:0;width:100%;font-size:clamp(10px,3vw,17px);letter-spacing:1px;padding:4px 2px;line-height:1.2}
+.hero-parish{font-size:clamp(8px,2vw,12px);line-height:1.3;margin:8px 0 0;text-shadow:0 2px 4px #000}
+.hero-info{position:relative;z-index:2;display:flex;justify-content:space-evenly;gap:5px;max-width:none;margin:0;padding:15px 10px 18px;background:#21130d}
+.hero-info>div{flex:1 1 33%;border-right:1px solid #b38b4c;padding:2px 5px;gap:4px}
+.hero-info>div:last-child{border:0}
+.hero-info span{font-size:15px}
+.hero-info p{font-size:9px;line-height:1.4}
+.hero-info strong{font-size:10px}
+}
+@media(max-width:390px){.hero-title-wrap{left:14%;right:14%;top:5%}.hero-info>div{flex:1 1 30%}.hero-info>div:nth-child(2){border-right:1px solid #b38b4c}.hero-info>div:last-child{flex:1 1 30%}}
 </style><header><a class="brand" href="/"><span class="church">♰</span><span>Paróquia Nossa Senhora Aparecida<small>Jardim Imperial</small></span></a><nav class="topnav"><a href="/">Início</a><a href="/#sobre">Sobre o Retiro</a><a href="/#inscricao">Inscrições</a><a href="/admin/login">♙ Área do Coordenador</a></nav></header>{% with msgs=get_flashed_messages() %}{% for m in msgs %}<main class="msg">{{m}}</main>{% endfor %}{% endwith %}{% block body %}{% endblock %}<footer>III Retiro de Jovens • SHEKINAH 2027</footer></html>'''
 def page(body,**kw):return render_template_string(BASE.replace("{% block body %}{% endblock %}",body),**kw)
 @app.get("/")
