@@ -1,4 +1,4 @@
-import os,sqlite3,secrets,csv,io
+import os,sqlite3,secrets,csv,io,json
 from datetime import date,datetime
 from functools import wraps
 from pathlib import Path
@@ -20,10 +20,11 @@ with db() as c:
  c.execute("CREATE TABLE IF NOT EXISTS admin (usuario TEXT PRIMARY KEY,senha TEXT)")
  if os.getenv("ADMIN_PASSWORD") and not c.execute("SELECT 1 FROM admin").fetchone():c.execute("INSERT INTO admin VALUES (?,?)",(os.getenv("ADMIN_USERNAME","coordenador"),generate_password_hash(os.getenv("ADMIN_PASSWORD"))))
 BASE=(Path(__file__).parent / "templates" / "base.html").read_text()
+GALLERY=json.loads((Path(__file__).parent / "data" / "gallery.json").read_text())
 def page(body,**kw):
  return render_template_string(BASE.replace("{% block body %}{% endblock %}",body),**kw)
 def home_page(values=None, errors=None):
- return page("{% include 'home.html' %}", values=values or {}, errors=errors or {})
+ return page("{% include 'home.html' %}", values=values or {}, errors=errors or {}, gallery=GALLERY)
 @app.get("/")
 def home():
  return home_page()

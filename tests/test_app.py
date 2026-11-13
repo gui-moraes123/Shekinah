@@ -46,6 +46,21 @@ class RetreatFlowTests(unittest.TestCase):
         self.assertIn('attachment', calendar.headers['Content-Disposition'])
         self.assertEqual(self.client.get('/missing').status_code, 404)
 
+    def test_gallery_selection_and_sources(self):
+        from app import GALLERY
+        self.assertEqual(len(GALLERY), 12)
+        self.assertEqual(sum(photo['edition'] == 1 for photo in GALLERY), 6)
+        self.assertEqual(sum(photo['edition'] == 2 for photo in GALLERY), 6)
+        self.assertEqual(len({photo['src'] for photo in GALLERY}), 12)
+        self.assertEqual(len({photo['post'] for photo in GALLERY}), 4)
+        html = self.client.get('/').get_data(as_text=True)
+        self.assertEqual(html.count('class="gallery-photo"'), 12)
+        for photo in GALLERY:
+            self.assertTrue(photo['source'].startswith('https://www.instagram.com/p/'))
+            with self.client.get(photo['src']) as response:
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.mimetype, 'image/jpeg')
+
     def test_csrf_and_admin_protection(self):
         self.assertEqual(self.client.post('/inscrever', data={}).status_code, 400)
         for route in ['/admin', '/admin/exportar', '/admin/inscricao/1']:

@@ -24,3 +24,6 @@ h1,h2{font-family:var(--sans);font-weight:850;letter-spacing:-1.8px;line-height:
 .brand img{background:transparent;border-radius:0}
 .parish-footer-logo{display:block;width:200px;height:auto;max-height:176px;object-fit:contain;object-position:left center;margin-top:24px}
 @media(max-width:580px){.parish-footer-logo{width:175px;max-height:154px;margin-top:22px}}
+/* Marca da paróquia com presença discreta no rodapé. */
+.parish-footer-logo{width:124px;max-height:110px;margin-top:18px}
+@media(max-width:580px){.parish-footer-logo{width:108px;max-height:95px;margin-top:16px}}

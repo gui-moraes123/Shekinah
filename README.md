@@ -50,3 +50,11 @@ Antes de receber dados de menores, configure política de privacidade e consenti
 A abertura usa a cena de adoração já existente em `static/hero-shekinah.jpg`. O arquivo `static/shekinah-oficial.png` é uma adaptação assistida por imagem da captura de tela enviada pela organização: pomba branca, cruz, luz dourada e lema. Não é o arquivo vetorial original; quando ele estiver disponível, esse asset pode ser substituído diretamente.
 
 A versão em uso, `static/shekinah-transparente.png`, tem fundo transparente. No rodapé, a identificação da paróquia usa `static/logo-igreja-oficial.svg`, em vez de texto separado.
+
+## Galeria das edições anteriores
+
+A galeria inclui uma seleção de 12 fotos públicas: seis da 1ª edição (2025) e seis da 2ª (2026), retiradas dos quatro posts indicados pela organização. Cada foto mantém um link para a publicação de origem. As imagens estão em `static/galeria/` e os metadados em `data/gallery.json`; não há dependência de embeds, login ou URLs temporárias do Instagram.
+
+A navegação permite escolher a edição, ampliar fotos, usar as setas do teclado e deslizar no celular. Sem JavaScript, as 12 fotos continuam visíveis e os links abrem as imagens.
+
+Fontes: https://www.instagram.com/p/DTdghb-jizU/, https://www.instagram.com/p/DTdhdlcDjYN/, https://www.instagram.com/p/DFYJMAeO_CF/ e https://www.instagram.com/p/DFWQgEnuktl/.
