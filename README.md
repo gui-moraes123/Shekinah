@@ -20,7 +20,7 @@ Acesse `http://localhost:5000` e `/admin/login` para a coordenação. O administ
 
 ## Funcionalidades
 
-- Página responsiva com arte e ícones locais, sem depender de fontes ou imagens externas.
+- Página responsiva com identidade em preto e dourado, abertura de adoração e ícones locais, sem depender de fontes ou imagens externas.
 - Inscrição em três etapas com validação também no servidor e preservação dos dados após erros. Sem JavaScript, o formulário completo continua disponível.
 - Checklist de bagagem salvo no navegador quando `localStorage` está disponível.
 - Download de calendário `.ics`, contato por WhatsApp e cópia de PIX com alternativa manual.
@@ -44,3 +44,7 @@ Configure `SECRET_KEY`, `ADMIN_USERNAME`, `ADMIN_PASSWORD` e `DATABASE_PATH=/dat
 A inscrição fica pendente até a coordenação confirmar o pagamento. A chave PIX exibida é para copiar; não há integração bancária automática. As datas, o valor e os contatos foram preservados do projeto original. O endereço exato do retiro deve ser confirmado com a coordenação.
 
 Antes de receber dados de menores, configure política de privacidade e consentimento apropriado.
+
+## Identidade visual
+
+A abertura usa a cena de adoração já existente em `static/hero-shekinah.jpg`. O arquivo `static/shekinah-oficial.png` é uma adaptação assistida por imagem da captura de tela enviada pela organização: pomba branca, cruz, luz dourada e lema. Não é o arquivo vetorial original; quando ele estiver disponível, esse asset pode ser substituído diretamente.

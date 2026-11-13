@@ -35,7 +35,8 @@ class RetreatFlowTests(unittest.TestCase):
 
     def test_public_pages_assets_and_calendar(self):
         html = self.client.get('/').get_data(as_text=True)
-        self.assertIn('Há encontros', html)
+        self.assertIn('ACENDER', html)
+        self.assertIn('/static/shekinah-oficial.png', html)
         for asset in re.findall(r'(?:src|href)="(/static/[^"?]+)', html):
             with self.client.get(asset) as response:
                 self.assertEqual(response.status_code, 200, asset)
