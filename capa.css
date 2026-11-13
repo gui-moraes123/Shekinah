@@ -1,0 +1,76 @@
+/* Capa SHEKINAH: cabeçalho, hero e faixa de pilares */
+.ico{width:46px;height:46px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Cabeçalho ---------- */
+header.site-header{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:24px;height:auto;min-height:70px;padding:9px max(22px,calc((100vw - 1360px)/2));background:linear-gradient(180deg,#0d0704,#170e08);border-bottom:1px solid rgba(214,168,80,.4);color:#fff}
+.nav-marca{display:flex;align-items:center;gap:14px;color:#fff;text-decoration:none;line-height:1.2}
+.nav-marca .ico{width:50px;height:50px;color:#f0b43c;stroke-width:1.9}
+.nav-marca b{display:block;font:700 clamp(15px,1.6vw,21px) Montserrat,Arial,sans-serif}
+.nav-marca small{display:block;margin-top:3px;font:400 clamp(13px,1.3vw,17px) Montserrat,Arial,sans-serif;color:#e8dccb}
+.nav-links{display:flex;align-items:center;gap:clamp(18px,2.6vw,42px)}
+.nav-links a{position:relative;display:inline-flex;align-items:center;gap:10px;padding:8px 0;color:#fff;text-decoration:none;font:600 clamp(14px,1.3vw,18px) Montserrat,Arial,sans-serif;white-space:nowrap}
+.nav-links a:hover{color:#f4c15a}
+.nav-links a.ativo{color:#f4c15a}
+.nav-links a.ativo:after{content:"";position:absolute;left:-6px;right:-6px;bottom:-9px;height:3px;border-radius:2px;background:#f0b43c}
+.nav-links .sep{align-self:stretch;width:1px;margin:8px 0;background:rgba(240,180,60,.55)}
+.nav-links .ico{width:26px;height:26px;stroke-width:1.9;color:#f0b43c}
+.nav-links a:focus-visible,.capa a:focus-visible,.nav-marca:focus-visible{outline:3px solid #fff3c4;outline-offset:4px;border-radius:6px}
+
+/* ---------- Capa ---------- */
+section.capa{position:relative;isolation:isolate;overflow:hidden;margin:0;padding:22px 20px 50px;border-radius:0;box-shadow:none;text-align:center;color:#fff;background:linear-gradient(180deg,rgba(10,5,2,.5) 0%,rgba(10,5,2,.1) 32%,rgba(10,5,2,.45) 78%,rgba(10,5,2,.92) 100%),url('/static/hero-shekinah.jpg?v=20261113full') center 18%/cover no-repeat #120a05}
+.capa:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 46% 58% at 50% 50%,rgba(9,4,1,.62),transparent 72%)}
+.capa-inner{max-width:1000px;margin:0 auto}
+.capa-logo{width:min(700px,80vw);margin:0 auto}
+.capa-logo img{display:block;width:100%;height:auto;filter:drop-shadow(0 0 16px rgba(255,186,84,.45)) drop-shadow(0 4px 6px rgba(0,0,0,.6))}
+.capa-lema{margin:calc(min(700px,80vw) * -.049) 0 0;font:italic 500 clamp(19px,2.5vw,34px)/1.2 'Playfair Display',Georgia,serif;color:#fff6e4;text-shadow:0 2px 10px rgba(0,0,0,.8)}
+.capa-traco{display:block;width:min(270px,44vw);height:5px;margin:8px auto 0;border-radius:50%;background:linear-gradient(90deg,transparent,#f6c453 22%,#fff0c0 55%,transparent);transform:rotate(-1.2deg);filter:drop-shadow(0 0 6px rgba(246,196,83,.6))}
+.capa-faixa{width:min(580px,94%);margin:22px auto 0;padding:7px 24px;font:800 clamp(22px,3.1vw,38px)/1.1 Montserrat,Arial,sans-serif;letter-spacing:.5px;color:#2e1d09;background:linear-gradient(90deg,rgba(228,170,55,0),#e3a93a 14%,#f6cf6b 50%,#e3a93a 86%,rgba(228,170,55,0))}
+.capa-local{margin:20px 0 0;font:700 clamp(13px,1.7vw,21px)/1.3 Montserrat,Arial,sans-serif;letter-spacing:.3px;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+.capa-infos{display:flex;justify-content:center;align-items:center;margin:20px auto 0;padding:0;list-style:none;color:#fff}
+.capa-infos li{display:flex;align-items:center;gap:14px;padding:4px clamp(18px,3.4vw,46px);text-align:left;font:600 clamp(13px,1.15vw,16px)/1.4 Montserrat,Arial,sans-serif;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+.capa-infos li+li{border-left:1px solid rgba(246,196,83,.55)}
+.capa-infos .ico{color:#f3b83f}
+.capa-infos .rotulo{display:block;font-weight:500}
+.capa-infos strong{display:block;font:800 clamp(20px,1.9vw,27px)/1.15 Montserrat,Arial,sans-serif}
+.capa-levar{display:flex;align-items:center;justify-content:center;gap:14px;width:min(745px,94%);margin:18px auto 0;padding:8px 22px;border:2px solid #e9b94c;border-radius:10px;background:rgba(16,9,4,.58);box-shadow:0 0 16px rgba(233,185,76,.28),inset 0 0 14px rgba(233,185,76,.1);font:600 clamp(11px,1.15vw,15px)/1.35 Montserrat,Arial,sans-serif;text-align:left}
+.capa-levar .ico{width:36px;height:36px;color:#f3b83f}
+a.capa-cta{display:inline-flex;align-items:center;justify-content:center;gap:16px;margin:18px auto 0;padding:16px 54px;border:0;border-radius:999px;background:linear-gradient(180deg,#fcd674,#eaa92f);color:#2a1906;text-decoration:none;font:800 clamp(16px,1.8vw,24px)/1 Montserrat,Arial,sans-serif;box-shadow:0 0 0 2px rgba(255,222,140,.55),0 8px 24px rgba(0,0,0,.5),0 0 32px rgba(244,177,56,.42);transition:filter .15s,transform .15s}
+a.capa-cta:hover{filter:brightness(1.07);transform:translateY(-1px)}
+a.capa-cta .ico{width:1.35em;height:1.35em;stroke-width:1.9}
+a.capa-whats{display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 10px;margin-top:16px;color:#fff;text-decoration:none;font:500 clamp(13px,1.3vw,17px)/1.3 Montserrat,Arial,sans-serif;text-shadow:0 2px 8px rgba(0,0,0,.85)}
+a.capa-whats:hover{color:#f6cf6b}
+.capa-whats svg{width:36px;height:36px;flex:none;fill:#25d366}
+.capa-whats b{font-weight:800;font-size:1.18em}
+
+/* ---------- Pilares (papel rasgado) ---------- */
+section.pilares{position:relative;z-index:2;margin:-46px 0 0;padding:70px 20px 66px;border-radius:0;box-shadow:none;color:#2c1a0c;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .29 0 0 0 0 .13 0 0 0 .13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,#f9efd9,#f2e2c1 55%,#f5e8cd);clip-path:polygon(0.0% 28.9px,1.25% 35.4px,2.5% 33.4px,3.75% 28.3px,5.0% 34.0px,6.25% 25.5px,7.5% 26.8px,8.75% 27.7px,10.0% 38.4px,11.25% 35.0px,12.5% 23.3px,13.75% 24.2px,15.0% 21.9px,16.25% 21.0px,17.5% 28.3px,18.75% 29.6px,20.0% 29.7px,21.25% 26.0px,22.5% 36.6px,23.75% 35.5px,25.0% 25.3px,26.25% 20.4px,27.5% 26.9px,28.75% 29.4px,30.0% 35.0px,31.25% 20.5px,32.5% 28.4px,33.75% 30.8px,35.0% 22.9px,36.25% 25.5px,37.5% 18.8px,38.75% 29.9px,40.0% 19.4px,41.25% 14.4px,42.5% 21.5px,43.75% 23.0px,45.0% 21.3px,46.25% 19.3px,47.5% 16.5px,48.75% 15.4px,50.0% 27.8px,51.25% 24.4px,52.5% 18.3px,53.75% 25.5px,55.0% 21.7px,56.25% 15.9px,57.5% 20.8px,58.75% 14.7px,60.0% 14.4px,61.25% 16.1px,62.5% 16.7px,63.75% 23.6px,65.0% 24.2px,66.25% 14.0px,67.5% 24.4px,68.75% 14.8px,70.0% 23.3px,71.25% 19.6px,72.5% 23.3px,73.75% 15.0px,75.0% 14.9px,76.25% 14.9px,77.5% 15.9px,78.75% 15.6px,80.0% 14.0px,81.25% 8.2px,82.5% 16.9px,83.75% 15.3px,85.0% 17.5px,86.25% 8.3px,87.5% 8.6px,88.75% 7.9px,90.0% 10.1px,91.25% 14.3px,92.5% 20.5px,93.75% 18.3px,95.0% 6.9px,96.25% 8.9px,97.5% 17.5px,98.75% 9.5px,100.0% 13.0px,100.0% calc(100% - 5.5px),98.75% calc(100% - 13.9px),97.5% calc(100% - 15.3px),96.25% calc(100% - 13.5px),95.0% calc(100% - 9.9px),93.75% calc(100% - 14.8px),92.5% calc(100% - 8.3px),91.25% calc(100% - 18.3px),90.0% calc(100% - 16.0px),88.75% calc(100% - 19.7px),87.5% calc(100% - 24px),86.25% calc(100% - 14.2px),85.0% calc(100% - 19.3px),83.75% calc(100% - 20.0px),82.5% calc(100% - 16.0px),81.25% calc(100% - 22.1px),80.0% calc(100% - 21.5px),78.75% calc(100% - 13.5px),77.5% calc(100% - 17.7px),76.25% calc(100% - 10.4px),75.0% calc(100% - 22.6px),73.75% calc(100% - 16.8px),72.5% calc(100% - 15.5px),71.25% calc(100% - 17.7px),70.0% calc(100% - 15.0px),68.75% calc(100% - 8.4px),67.5% calc(100% - 11.7px),66.25% calc(100% - 5.5px),65.0% calc(100% - 11.5px),63.75% calc(100% - 16.5px),62.5% calc(100% - 22.5px),61.25% calc(100% - 16.3px),60.0% calc(100% - 12.3px),58.75% calc(100% - 4.8px),57.5% calc(100% - 14.0px),56.25% calc(100% - 6.1px),55.0% calc(100% - 3.7px),53.75% calc(100% - 14.1px),52.5% calc(100% - 17.0px),51.25% calc(100% - 12.9px),50.0% calc(100% - 5.5px),48.75% calc(100% - 20.2px),47.5% calc(100% - 13.5px),46.25% calc(100% - 13.5px),45.0% calc(100% - 7.6px),43.75% calc(100% - 10.0px),42.5% calc(100% - 10.1px),41.25% calc(100% - 22.1px),40.0% calc(100% - 19.8px),38.75% calc(100% - 8.6px),37.5% calc(100% - 15.2px),36.25% calc(100% - 20.1px),35.0% calc(100% - 19.8px),33.75% calc(100% - 8.5px),32.5% calc(100% - 13.4px),31.25% calc(100% - 17.2px),30.0% calc(100% - 18.3px),28.75% calc(100% - 5.5px),27.5% calc(100% - 10.2px),26.25% calc(100% - 7.7px),25.0% calc(100% - 19.0px),23.75% calc(100% - 15.0px),22.5% calc(100% - 9.0px),21.25% calc(100% - 6.5px),20.0% calc(100% - 10.4px),18.75% calc(100% - 17.0px),17.5% calc(100% - 19.2px),16.25% calc(100% - 18.7px),15.0% calc(100% - 22.5px),13.75% calc(100% - 9.3px),12.5% calc(100% - 16.5px),11.25% calc(100% - 16.5px),10.0% calc(100% - 20.6px),8.75% calc(100% - 17.5px),7.5% calc(100% - 23.0px),6.25% calc(100% - 15.7px),5.0% calc(100% - 23.1px),3.75% calc(100% - 20.1px),2.5% calc(100% - 18.5px),1.25% calc(100% - 8.0px),0.0% calc(100% - 14.8px))}
+.pilares ul{max-width:1180px;margin:0 auto;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.pilares li{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 12px;text-align:center;font:700 clamp(16px,1.6vw,25px)/1.2 Montserrat,Arial,sans-serif}
+@media(min-width:901px){.pilares li{white-space:nowrap}}
+.pilares li+li:before{content:"";position:absolute;left:0;top:50%;width:1px;height:96px;transform:translateY(-50%);background:#d19a42}
+.pilares .ico{width:clamp(48px,5vw,70px);height:clamp(48px,5vw,70px);color:#7f4716;stroke-width:1.5}
+
+/* ---------- Mobile ---------- */
+@media(max-width:900px){
+ section.capa{background-image:linear-gradient(180deg,rgba(10,5,2,.66),rgba(10,5,2,.52) 40%,rgba(10,5,2,.68) 80%,rgba(10,5,2,.93)),url('/static/hero-shekinah.jpg?v=20261113full');background-position:center,88% 20%}
+ header.site-header{flex-direction:column;gap:8px;padding:10px 14px 12px}
+ .nav-links{flex-wrap:wrap;justify-content:center;gap:4px 20px}
+ .nav-links .sep{display:none}
+ .nav-links a.ativo:after{bottom:-2px}
+ section.capa{padding:28px 14px 96px}
+}
+@media(max-width:700px){
+ .capa-infos{flex-direction:column;align-items:stretch;gap:14px;width:fit-content;max-width:100%}
+ .capa-infos li{padding:0}
+ .capa-infos li+li{border-left:0;border-top:1px solid rgba(246,196,83,.4);padding-top:14px}
+ .capa-infos strong{font-size:22px}
+}
+@media(max-width:640px){
+ .capa-levar{padding:10px 14px;gap:10px}
+ .capa-levar .ico{width:28px;height:28px}
+ a.capa-cta{width:100%;max-width:340px;padding:16px 20px}
+ section.pilares{padding:54px 14px 58px}
+ .pilares ul{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:26px}
+ .pilares li:nth-child(3):before{display:none}
+}
+@media(prefers-reduced-motion:reduce){a.capa-cta{transition:none}}
