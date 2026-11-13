@@ -48,3 +48,5 @@ Antes de receber dados de menores, configure política de privacidade e consenti
 ## Identidade visual
 
 A abertura usa a cena de adoração já existente em `static/hero-shekinah.jpg`. O arquivo `static/shekinah-oficial.png` é uma adaptação assistida por imagem da captura de tela enviada pela organização: pomba branca, cruz, luz dourada e lema. Não é o arquivo vetorial original; quando ele estiver disponível, esse asset pode ser substituído diretamente.
+
+A versão em uso, `static/shekinah-transparente.png`, tem fundo transparente. No rodapé, a identificação da paróquia usa `static/logo-igreja-oficial.svg`, em vez de texto separado.

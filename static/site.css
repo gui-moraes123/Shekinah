@@ -19,3 +19,8 @@ h1,h2{font-family:var(--sans);font-weight:850;letter-spacing:-1.8px;line-height:
 /* A identidade aparece imediatamente, inclusive em conexões e capturas rápidas. */
 .official-logo{animation:none}
 @media(max-width:580px){.official-logo{width:min(100%,280px)}}
+/* Logos com transparência real, sem fundo ou mistura de cores. */
+.official-logo{mix-blend-mode:normal}
+.brand img{background:transparent;border-radius:0}
+.parish-footer-logo{display:block;width:200px;height:auto;max-height:176px;object-fit:contain;object-position:left center;margin-top:24px}
+@media(max-width:580px){.parish-footer-logo{width:175px;max-height:154px;margin-top:22px}}
