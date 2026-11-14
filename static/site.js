@@ -55,6 +55,63 @@
     togglePassword.textContent = show ? 'Ocultar' : 'Mostrar';
     togglePassword.setAttribute('aria-pressed', String(show));
   });
+  document.querySelectorAll('[data-phone-mask]').forEach(input => {
+    function maskPhone() {
+      const raw = input.value;
+      const cursor = input.selectionStart ?? raw.length;
+      const atEnd = cursor === raw.length;
+      let digitsBefore = raw.slice(0, cursor).replace(/\D/g, '').length;
+      let digits = raw.replace(/\D/g, '');
+      // Accept a Brazilian number pasted with the +55 country code.
+      if ((digits.length === 12 || digits.length === 13) && digits.startsWith('55')) {
+        digits = digits.slice(2);
+        digitsBefore = Math.max(0, digitsBefore - 2);
+      }
+      digits = digits.slice(0, 11);
+      let formatted = '';
+      if (digits) {
+        formatted = '(' + digits.slice(0, 2);
+        if (digits.length > 2) {
+          const local = digits.slice(2);
+          const split = digits.length === 11 ? 5 : 4;
+          formatted += ')' + local.slice(0, split);
+          if (local.length > split) formatted += '-' + local.slice(split);
+        }
+      }
+      input.value = formatted;
+      input.setCustomValidity(digits && digits.length !== 10 && digits.length !== 11
+        ? 'Informe o telefone completo com DDD. Ex.: (11)99999-9999.' : '');
+      if (document.activeElement === input) {
+        let position = formatted.length;
+        if (!atEnd) {
+          position = 0;
+          let seen = 0;
+          while (position < formatted.length && seen < digitsBefore) {
+            if (/\d/.test(formatted[position])) seen++;
+            position++;
+          }
+        }
+        input.setSelectionRange(position, position);
+      }
+    }
+    input.addEventListener('input', maskPhone);
+    input.addEventListener('change', maskPhone);
+    input.addEventListener('beforeinput', event => {
+      if (input.selectionStart !== input.selectionEnd) return;
+      const cursor = input.selectionStart;
+      const backwards = event.inputType === 'deleteContentBackward';
+      const forwards = event.inputType === 'deleteContentForward';
+      if (!backwards && !forwards) return;
+      let index = backwards ? cursor - 1 : cursor;
+      if (index < 0 || index >= input.value.length || /\d/.test(input.value[index])) return;
+      while (index >= 0 && index < input.value.length && !/\d/.test(input.value[index])) index += backwards ? -1 : 1;
+      if (index < 0 || index >= input.value.length) return;
+      event.preventDefault();
+      input.setRangeText('', backwards ? index : cursor, backwards ? cursor : index + 1, 'start');
+      maskPhone();
+    });
+    maskPhone();
+  });
   const form = document.getElementById('registration-form');
   if (!form) return;
   const steps = [...form.querySelectorAll('[data-step]')];
