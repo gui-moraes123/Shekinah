@@ -24,7 +24,7 @@ class RetreatFlowTests(unittest.TestCase):
     def registration(self, **changes):
         data = dict(tipo='Encontrista', nome='Maria Teste', responsavel='Responsável Teste',
                     nascimento='2010-05-04', endereco='Rua Teste, 10', telefone='11999998888',
-                    telefone_resp='11988887777', medicamento='Não faz uso', chegada='', pagamento='PIX')
+                    telefone_resp='11988887777', medicamento='Não faz uso', chegada='', pagamento='PIX', restricao_alimentar='Não possuo')
         data.update(changes)
         data['csrf_token'] = self.token()
         return self.client.post('/inscrever', data=data)
@@ -131,6 +131,46 @@ class RetreatFlowTests(unittest.TestCase):
         self.assertIn('Manter participante', export)
         self.assertNotIn('Excluir', export)
         self.assertEqual(self.client.post(url, data={'csrf_token':self.token('/admin'),'confirmacao':'excluir'}).status_code, 404)
+
+    def test_dietary_restriction_validation_and_admin_visibility(self):
+        for value in ('', '   ', 'x' * 501):
+            self.assertEqual(self.registration(restricao_alimentar=value).status_code, 422)
+        restriction = 'Alergia a amendoim; sem lactose <script>teste</script>'
+        response = self.registration(restricao_alimentar=restriction, nome='')
+        self.assertEqual(response.status_code, 422)
+        self.assertIn('sem lactose &lt;script&gt;', response.get_data(as_text=True))
+        self.assertEqual(self.registration(restricao_alimentar=restriction).status_code, 200)
+        with db() as connection:
+            row = connection.execute('SELECT * FROM inscricoes').fetchone()
+            self.assertEqual(row['restricao_alimentar'], restriction)
+            number = row['id']
+        self.login()
+        for url in ('/admin', f'/admin/inscricao/{number}'):
+            html = self.client.get(url).get_data(as_text=True)
+            self.assertIn('Alergia a amendoim; sem lactose &lt;script&gt;', html)
+            self.assertNotIn('<script>teste</script>', html)
+        export = self.client.get('/admin/exportar').get_data(as_text=True)
+        self.assertIn('restricao_alimentar', export)
+        self.assertIn('Alergia a amendoim', export)
+
+    def test_dietary_migration_preserves_existing_registrations(self):
+        import sqlite3
+        import subprocess
+        import sys
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as directory:
+            database = os.path.join(directory, 'legacy.db')
+            with sqlite3.connect(database) as connection:
+                connection.execute("CREATE TABLE inscricoes (id INTEGER PRIMARY KEY, tipo TEXT,nome TEXT,responsavel TEXT,nascimento TEXT,endereco TEXT,telefone TEXT,telefone_resp TEXT,medicamento TEXT,chegada TEXT,pagamento TEXT,status TEXT DEFAULT 'Pendente',criado TEXT)")
+                connection.execute("INSERT INTO inscricoes(id,nome,status) VALUES (42,'Cadastro anterior','Confirmado')")
+            environment = dict(os.environ, DATABASE_PATH=database)
+            for _ in range(2):
+                subprocess.run([sys.executable, '-c', 'import app'], env=environment,
+                               cwd=Path(__file__).resolve().parents[1], check=True, capture_output=True)
+            with sqlite3.connect(database) as connection:
+                self.assertEqual(connection.execute('SELECT id,nome,status,restricao_alimentar FROM inscricoes').fetchall(),
+                                 [(42, 'Cadastro anterior', 'Confirmado', '')])
+                self.assertEqual(sum(column[1] == 'restricao_alimentar' for column in connection.execute('PRAGMA table_info(inscricoes)')), 1)
 
     def test_validation_keeps_values_and_does_not_insert(self):
         for change in [dict(nascimento='2016-01-16'), dict(nascimento='invalid'), dict(nome='x'*151),
