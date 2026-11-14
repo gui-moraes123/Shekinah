@@ -58,3 +58,7 @@ A galeria inclui uma seleção de 12 fotos públicas: seis da 1ª edição (2025
 A navegação permite escolher a edição, ampliar fotos, usar as setas do teclado e deslizar no celular. Sem JavaScript, as 12 fotos continuam visíveis e os links abrem as imagens.
 
 Fontes: https://www.instagram.com/p/DTdghb-jizU/, https://www.instagram.com/p/DTdhdlcDjYN/, https://www.instagram.com/p/DFYJMAeO_CF/ e https://www.instagram.com/p/DFWQgEnuktl/.
+
+## Cuidados alimentares
+
+O formulário solicita a restrição alimentar na etapa de cuidados. Quem não tiver restrições informa “Não possuo”. O texto aceita até 500 caracteres e aparece na ficha, nos detalhes da listagem administrativa e no CSV. O banco existente recebe a coluna automaticamente, preservando os dados; inscrições anteriores exibem “Não informado”.

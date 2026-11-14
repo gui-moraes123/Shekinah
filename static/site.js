@@ -155,7 +155,7 @@
     }
   }
   function validateStep(index) {
-    for (const input of steps[index].querySelectorAll('input,select')) {
+    for (const input of steps[index].querySelectorAll('input,select,textarea')) {
       if (!input.checkValidity()) { showStep(index, false); input.reportValidity(); input.focus(); return false; }
     }
     return true;
