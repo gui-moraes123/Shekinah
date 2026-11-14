@@ -89,6 +89,49 @@ class RetreatFlowTests(unittest.TestCase):
         self.assertEqual(self.client.post('/admin/sair', data={'csrf_token':token}).status_code, 302)
         self.assertEqual(self.client.get('/admin').status_code, 302)
 
+    def test_delete_requires_login_csrf_and_explicit_confirmation(self):
+        self.registration()
+        with db() as connection:
+            number = connection.execute('SELECT id FROM inscricoes').fetchone()[0]
+        url = f'/admin/inscricao/{number}/excluir'
+        token = self.token()
+        self.assertEqual(self.client.get(url).status_code, 302)
+        self.assertEqual(self.client.post(url, data={'csrf_token':token,'confirmacao':'excluir'}).status_code, 302)
+        self.login()
+        self.assertEqual(self.client.post(url, data={'confirmacao':'excluir'}).status_code, 400)
+        token = self.token(url)
+        self.assertEqual(self.client.post(url, data={'csrf_token':token}).status_code, 400)
+        with db() as connection:
+            self.assertEqual(connection.execute('SELECT COUNT(*) FROM inscricoes').fetchone()[0], 1)
+
+    def test_delete_confirmation_is_safe_and_only_removes_selected_registration(self):
+        self.registration(nome='Excluir <script>teste</script>')
+        self.registration(nome='Manter participante')
+        with db() as connection:
+            number = connection.execute('SELECT MIN(id) FROM inscricoes').fetchone()[0]
+        self.login()
+        url = f'/admin/inscricao/{number}/excluir'
+        confirmation = self.client.get(url).get_data(as_text=True)
+        self.assertIn('Excluir &lt;script&gt;teste&lt;/script&gt;', confirmation)
+        self.assertIn('Cancelar e voltar', confirmation)
+        self.assertIn(url, self.client.get('/admin').get_data(as_text=True))
+        self.assertIn(url, self.client.get(f'/admin/inscricao/{number}').get_data(as_text=True))
+        with db() as connection:
+            self.assertEqual(connection.execute('SELECT COUNT(*) FROM inscricoes').fetchone()[0], 2)
+        response = self.client.post(url, data={'csrf_token':self.token(url),'confirmacao':'excluir'})
+        self.assertEqual(response.status_code, 303)
+        self.assertTrue(response.location.endswith('/admin'))
+        self.assertIn('excluída com sucesso', self.client.get('/admin').get_data(as_text=True))
+        with db() as connection:
+            rows = connection.execute('SELECT nome FROM inscricoes').fetchall()
+            self.assertEqual([r['nome'] for r in rows], ['Manter participante'])
+        self.assertEqual(self.client.get(url).status_code, 404)
+        self.assertEqual(self.client.get(f'/admin/inscricao/{number}').status_code, 404)
+        export = self.client.get('/admin/exportar').get_data(as_text=True)
+        self.assertIn('Manter participante', export)
+        self.assertNotIn('Excluir', export)
+        self.assertEqual(self.client.post(url, data={'csrf_token':self.token('/admin'),'confirmacao':'excluir'}).status_code, 404)
+
     def test_validation_keeps_values_and_does_not_insert(self):
         for change in [dict(nascimento='2016-01-16'), dict(nascimento='invalid'), dict(nome='x'*151),
                        dict(telefone='abc'), dict(tipo='Other'), dict(tipo='Trabalhador',chegada='')]:

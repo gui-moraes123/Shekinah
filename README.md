@@ -25,7 +25,7 @@ Acesse `http://localhost:5000` e `/admin/login` para a coordenação. O administ
 - Checklist de bagagem salvo no navegador quando `localStorage` está disponível.
 - Download de calendário `.ics`, contato por WhatsApp e cópia de PIX com alternativa manual.
 - Protocolo de inscrição imprimível.
-- Coordenação com login, filtros combináveis, fichas, confirmação manual de pagamentos e exportação CSV.
+- Coordenação com login, filtros combináveis, fichas, confirmação manual de pagamentos, exclusão individual com confirmação e exportação CSV.
 
 Conteúdo e formulários públicos estão em `templates/`; estilos em `static/site.css` e interações em `static/site.js`. As rotas e os templates administrativos existentes estão em `app.py`.
 
